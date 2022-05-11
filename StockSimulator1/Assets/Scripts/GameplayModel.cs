@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Manager;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -8,7 +9,7 @@ namespace Assets.Scripts
     {
         public Player Player { get; private set; } = default;
         public Dictionary<int,Company> Companies { get; private set; } = default;
-        private EStage currentStage = default;
+        private EStage currentStage;
         public EStage CurrentStage
         {
             get
@@ -18,7 +19,6 @@ namespace Assets.Scripts
             set
             {
                 currentStage = value;
-                new StageManager().OnStageSwitch.Invoke();
             }
         } 
         public GameplayModel(Player player, Dictionary<int, Company> companies, EStage currentStage)

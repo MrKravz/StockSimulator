@@ -18,6 +18,20 @@ namespace Assets.Scripts
             }
             return configDeserialaizer.GetDictionary("D:\\StockSimulator\\CompanyConfig.json");
         }
+        public List<Headline> LoadHeadlineInfo()
+        {
+            List<Headline> headlines = new List<Headline>();
+            ConfigDeserialaizer<DefaultHeadline> configDeserialaizer = new ConfigDeserialaizer<DefaultHeadline>();
+            foreach (var headline in configDeserialaizer.GetList("D:\\StockSimulator\\DefaultZagConfig.json"))
+            {
+                headlines.Add(headline);
+            }
+            foreach (var headline in configDeserialaizer.GetList("D:\\StockSimulator\\TypedZagConfig.json"))
+            {
+                headlines.Add(headline);
+            }
+            return headlines;
+        }
         public Player LoadPlayerInfo()
         {
             if (File.Exists("D:\\StockSimulator\\SavedGamePlayer.json"))
