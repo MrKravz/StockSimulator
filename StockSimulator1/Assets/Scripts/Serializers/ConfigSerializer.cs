@@ -6,9 +6,9 @@ namespace Assets.Scripts.Serializers
 {
     public class ConfigSerializer<T>
     {
-        public void WtiteDictionary(string path, Dictionary<int, T> list)
+        public void WtiteDictionary(string path, Dictionary<int, T> dicionary)
         {
-            File.WriteAllText(path, JsonConvert.SerializeObject(list));
+            File.WriteAllText(path, JsonConvert.SerializeObject(dicionary));
         }
         public void WtiteList(string path, List<T> list)
         {

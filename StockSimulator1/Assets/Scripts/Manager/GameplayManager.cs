@@ -1,5 +1,6 @@
 using Assets.Scripts;
 using Assets.Scripts.Manager;
+using System.IO;
 using UnityEngine;
 
 public enum EStage
@@ -12,10 +13,15 @@ public enum EStage
 public class GameplayManager : MonoBehaviour
 {
     public static GameplayModel gameplayModel { get; private set; } = default;
+
     private void Awake()
     {
         LoadInfo loadInfo = new LoadInfo();
         gameplayModel = loadInfo.LoadModel();
+        if (!File.Exists("D:\\StockSimulator\\SavedGameStage.json"))
+        {
+            SwitchStage();
+        }
     }
     public void SwitchStage()
     {
@@ -23,7 +29,6 @@ public class GameplayManager : MonoBehaviour
         if (gameplayModel.CurrentStage == EStage.Primary)
         {
             gameplayModel.CurrentStage = EStage.Renew;
-           
             stageManager.OnStageSwitch.Invoke();
             return;
         }

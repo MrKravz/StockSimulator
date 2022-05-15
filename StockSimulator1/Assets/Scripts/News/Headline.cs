@@ -1,6 +1,9 @@
-﻿namespace Assets.Scripts
+﻿using System;
+
+namespace Assets.Scripts
 {
-    public abstract class Headline
+    [Serializable]
+    public class Headline
     {
         public string Text { get; set; } = default;
         public int Percent { get; set; } = default;

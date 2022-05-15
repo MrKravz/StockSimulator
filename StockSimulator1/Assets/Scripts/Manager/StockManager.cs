@@ -1,12 +1,10 @@
-﻿using System.Linq;
-
-namespace Assets.Scripts
+﻿namespace Assets.Scripts
 {
     class StockManager
     {
         public void BuyStock(int companyKey, Company company , Player player)
         {
-            if (player.Companies.Keys.Contains(companyKey) || player.MoneyComponent.CurrentMoney < company.PriceComponent.CurrentPrice)
+            if (player.Companies.ContainsKey(companyKey) || player.MoneyComponent.CurrentMoney < company.PriceComponent.CurrentPrice)
             {
                 return;
             }
@@ -15,7 +13,7 @@ namespace Assets.Scripts
         }
         public void SellStock(int companyKey, Company company, Player player)
         {
-            if (player.Companies.Keys.Contains(companyKey))
+            if (player.Companies.ContainsKey(companyKey))
             {
                 player.Companies.Remove(companyKey);
                 new MoneyManager().SellStockExpanses(player, company);

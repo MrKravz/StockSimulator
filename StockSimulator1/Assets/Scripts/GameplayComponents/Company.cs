@@ -2,6 +2,16 @@
 
 namespace Assets.Scripts
 {
+    public enum ETypeOfCompany
+    {
+        Logistic = 1,
+        Food = 2,
+        IT = 3,
+        Clothes = 4,
+        Medicine = 5,
+        SpaceInventions = 6,
+        Movies = 7
+    }
     [Serializable]
     public class Company
     {

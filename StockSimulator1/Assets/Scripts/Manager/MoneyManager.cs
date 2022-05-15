@@ -18,7 +18,7 @@
         {
             foreach (var item in player.Companies)
             {
-                player.MoneyComponent.Add(item.Value.PriceComponent.CurrentPrice / 10);
+                player.MoneyComponent.Add(item.Value.PriceComponent.CurrentPrice / 100 * 30);
             }
         }
     }

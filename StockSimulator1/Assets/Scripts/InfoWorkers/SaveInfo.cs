@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using Assets.Scripts;
+using Assets.Scripts.News;
 using Assets.Scripts.Serializers;
 
 public class SaveInfo 
@@ -9,6 +10,7 @@ public class SaveInfo
     {
         SaveCompaniesInfo(gameplayModel.Companies);
         SavePlayerInfo(gameplayModel.Player);
+        SaveNewsInfo(gameplayModel.Newspaper);
         SaveStageInfo(gameplayModel.CurrentStage);
     }
    public void SaveCompaniesInfo(Dictionary<int, Company> company)
@@ -33,6 +35,17 @@ public class SaveInfo
         File.Create("D:\\StockSimulator\\SavedGamePlayer.json").Close();
         configSerializer.WriteObject("D:\\StockSimulator\\SavedGamePlayer.json", player);
     }
+    public void SaveNewsInfo(Newspaper news)
+    {
+        ConfigSerializer<Newspaper> configSerializer = new ConfigSerializer<Newspaper>();
+        if (File.Exists("D:\\StockSimulator\\SavedGameNewspaper.json"))
+        {
+            configSerializer.WriteObject("D:\\StockSimulator\\SavedGameNewspaper.json", news);
+            return;
+        }
+        File.Create("D:\\StockSimulator\\SavedGameNewspaper.json").Close();
+        configSerializer.WriteObject("D:\\StockSimulator\\SavedGameNewspaper.json", news);
+    }
     public void SaveStageInfo(EStage stage)
     {
         ConfigSerializer<EStage> configSerializer = new ConfigSerializer<EStage>();
@@ -44,5 +57,23 @@ public class SaveInfo
         File.Create("D:\\StockSimulator\\SavedGameStage.json").Close();
         configSerializer.WriteObject("D:\\StockSimulator\\SavedGameStage.json", stage);
     }
-
+    public void RemoveAllSavedInfo()
+    {
+        if (File.Exists("D:\\StockSimulator\\SavedGameStage.json"))
+        {
+            File.Delete("D:\\StockSimulator\\SavedGameStage.json");
+        }
+        if (File.Exists("D:\\StockSimulator\\SavedGameNewspaper.json"))
+        {
+            File.Delete("D:\\StockSimulator\\SavedGameNewspaper.json");
+        }
+        if (File.Exists("D:\\StockSimulator\\SavedGamePlayer.json"))
+        {
+            File.Delete("D:\\StockSimulator\\SavedGamePlayer.json");
+        }
+        if (File.Exists("D:\\StockSimulator\\SavedGameCompany.json"))
+        {
+            File.Delete("D:\\StockSimulator\\SavedGameCompany.json");
+        }
+    }
 }

@@ -15,7 +15,7 @@
         }
         public void Add(int addValue)
         {
-            CurrentPrice -= addValue;
+            CurrentPrice += addValue;
         }
         public void Reset()
         {

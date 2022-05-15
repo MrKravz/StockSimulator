@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainGameplaySwitch : MonoBehaviour
+public class RoomTriggerSwitch : MonoBehaviour
 {
     [SerializeField] string sceneName;
     private void OnMouseDown()

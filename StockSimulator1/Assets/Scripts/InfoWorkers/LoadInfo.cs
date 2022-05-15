@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.News;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Assets.Scripts
@@ -7,7 +8,7 @@ namespace Assets.Scripts
     {
         public GameplayModel LoadModel()
         {
-            return new GameplayModel(LoadPlayerInfo(), LoadCompaniesInfo(), LoadStageInfo());
+            return new GameplayModel(LoadPlayerInfo(), LoadCompaniesInfo(), LoadStageInfo(),LoadNewsInfo());
         }
         public Dictionary<int,Company> LoadCompaniesInfo()
         {
@@ -21,12 +22,8 @@ namespace Assets.Scripts
         public List<Headline> LoadHeadlineInfo()
         {
             List<Headline> headlines = new List<Headline>();
-            ConfigDeserialaizer<DefaultHeadline> configDeserialaizer = new ConfigDeserialaizer<DefaultHeadline>();
-            foreach (var headline in configDeserialaizer.GetList("D:\\StockSimulator\\DefaultZagConfig.json"))
-            {
-                headlines.Add(headline);
-            }
-            foreach (var headline in configDeserialaizer.GetList("D:\\StockSimulator\\TypedZagConfig.json"))
+            ConfigDeserialaizer<Headline> configDeserialaizer = new ConfigDeserialaizer<Headline>();
+            foreach (var headline in configDeserialaizer.GetList("D:\\StockSimulator\\HeadlineConfig.json"))
             {
                 headlines.Add(headline);
             }
@@ -41,6 +38,15 @@ namespace Assets.Scripts
             }
             return new Player(new MoneyComponent(1000,1000));
         }
+        public Newspaper LoadNewsInfo()
+        {
+            if (File.Exists("D:\\StockSimulator\\SavedGameNewspaper.json"))
+            {
+                ConfigDeserialaizer<Newspaper> configDeserialaizer = new ConfigDeserialaizer<Newspaper>();
+                return configDeserialaizer.GetObject("D:\\StockSimulator\\SavedGameNewspaper.json");
+            }
+            return default;
+        }
         public EStage LoadStageInfo()
         {
             if (File.Exists("D:\\StockSimulator\\SavedGameStage.json"))
@@ -48,7 +54,7 @@ namespace Assets.Scripts
                 ConfigDeserialaizer<EStage> configDeserialaizer = new ConfigDeserialaizer<EStage>();
                 return configDeserialaizer.GetObject("D:\\StockSimulator\\SavedGameStage.json");
             }
-            return EStage.Renew;
+            return EStage.Primary;
         }
     }
 }
