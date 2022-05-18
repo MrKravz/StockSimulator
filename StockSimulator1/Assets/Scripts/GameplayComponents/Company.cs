@@ -9,7 +9,7 @@ namespace Assets.Scripts
         IT = 3,
         Clothes = 4,
         Medicine = 5,
-        SpaceInventions = 6,
+        Inventions = 6,
         Movies = 7
     }
     [Serializable]

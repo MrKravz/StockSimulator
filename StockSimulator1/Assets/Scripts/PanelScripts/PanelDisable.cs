@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 public class PanelDisable : MonoBehaviour
 {
     [SerializeField] GameObject panel;

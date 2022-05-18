@@ -1,79 +1,64 @@
 using System.Collections.Generic;
 using System.IO;
 using Assets.Scripts;
+using Assets.Scripts.GameplayComponents;
+using Assets.Scripts.Manager;
 using Assets.Scripts.News;
 using Assets.Scripts.Serializers;
+using UnityEngine;
 
-public class SaveInfo 
+public class SaveInfo
 {
     public void SaveModel(GameplayModel gameplayModel)
     {
-        SaveCompaniesInfo(gameplayModel.Companies);
-        SavePlayerInfo(gameplayModel.Player);
-        SaveNewsInfo(gameplayModel.Newspaper);
-        SaveStageInfo(gameplayModel.CurrentStage);
+
+        ConfigSerializer<GameplayModel> configSerializer = new ConfigSerializer<GameplayModel>();
+        if (File.Exists(Application.dataPath + "\\GameFiles\\SavedGameModel.json"))
+        {
+            configSerializer.WriteObject(Application.dataPath + "\\GameFiles\\SavedGameModel.json", gameplayModel);
+            return;
+        }
+        File.Create(Application.dataPath + "\\GameFiles\\SavedGameModel.json").Close();
+        configSerializer.WriteObject(Application.dataPath + "\\GameFiles\\SavedGameModel.json", gameplayModel);
     }
-   public void SaveCompaniesInfo(Dictionary<int, Company> company)
+    public void GenerateHeadlineInfo(List<Headline> headlines)
+    {
+        ConfigSerializer<Headline> configSerializer = new ConfigSerializer<Headline>();
+        if (File.Exists(Application.dataPath + "\\GameFiles\\HeadlineConfig.json"))
+        {
+            configSerializer.WriteList(Application.dataPath + "\\GameFiles\\HeadlineConfig.json", headlines);
+            return;
+        }
+        File.Create(Application.dataPath + "\\GameFiles\\HeadlineConfig.json").Close();
+        configSerializer.WriteList(Application.dataPath + "\\GameFiles\\HeadlineConfig.json", headlines);
+    }
+    public void GenerateCompaniesInfo(Dictionary<int, Company> companies)
     {
         ConfigSerializer<Company> configSerializer = new ConfigSerializer<Company>();
-        if (File.Exists("D:\\StockSimulator\\SavedGameCompany.json"))
+        if (File.Exists(Application.dataPath + "\\GameFiles\\HeadlineConfig.json"))
         {
-            configSerializer.WtiteDictionary("D:\\StockSimulator\\SavedGameCompany.json", company);
+            configSerializer.WriteDictionary(Application.dataPath + "\\GameFiles\\CompanyConfig.json", companies);
             return;
         }
-        File.Create("D:\\StockSimulator\\SavedGameCompany.json").Close();
-        configSerializer.WtiteDictionary("D:\\StockSimulator\\SavedGameCompany.json", company);
+        File.Create(Application.dataPath + "\\GameFiles\\CompanyConfig.json").Close();
+        configSerializer.WriteDictionary(Application.dataPath + "\\GameFiles\\CompanyConfig.json", companies);
     }
-    public void SavePlayerInfo(Player player)
+    public void GenerateOcassionsInfo(List<FriendOcassion> ocassions)
     {
-        ConfigSerializer<Player> configSerializer = new ConfigSerializer<Player>();
-        if (File.Exists("D:\\StockSimulator\\SavedGamePlayer.json"))
+        ConfigSerializer<FriendOcassion> configSerializer = new ConfigSerializer<FriendOcassion>();
+        if (File.Exists(Application.dataPath + "\\GameFiles\\OcassionsConfig.json"))
         {
-            configSerializer.WriteObject("D:\\StockSimulator\\SavedGamePlayer.json", player);
+            configSerializer.WriteList(Application.dataPath + "\\GameFiles\\OcassionsConfig.json", ocassions);
             return;
         }
-        File.Create("D:\\StockSimulator\\SavedGamePlayer.json").Close();
-        configSerializer.WriteObject("D:\\StockSimulator\\SavedGamePlayer.json", player);
-    }
-    public void SaveNewsInfo(Newspaper news)
-    {
-        ConfigSerializer<Newspaper> configSerializer = new ConfigSerializer<Newspaper>();
-        if (File.Exists("D:\\StockSimulator\\SavedGameNewspaper.json"))
-        {
-            configSerializer.WriteObject("D:\\StockSimulator\\SavedGameNewspaper.json", news);
-            return;
-        }
-        File.Create("D:\\StockSimulator\\SavedGameNewspaper.json").Close();
-        configSerializer.WriteObject("D:\\StockSimulator\\SavedGameNewspaper.json", news);
-    }
-    public void SaveStageInfo(EStage stage)
-    {
-        ConfigSerializer<EStage> configSerializer = new ConfigSerializer<EStage>();
-        if (File.Exists("D:\\StockSimulator\\SavedGameStage.json"))
-        {
-            configSerializer.WriteObject("D:\\StockSimulator\\SavedGameStage.json", stage);
-            return;
-        }
-        File.Create("D:\\StockSimulator\\SavedGameStage.json").Close();
-        configSerializer.WriteObject("D:\\StockSimulator\\SavedGameStage.json", stage);
+        File.Create(Application.dataPath + "\\GameFiles\\OcassionsConfig.json").Close();
+        configSerializer.WriteList(Application.dataPath + "\\GameFiles\\OcassionsConfig.json", ocassions);
     }
     public void RemoveAllSavedInfo()
     {
-        if (File.Exists("D:\\StockSimulator\\SavedGameStage.json"))
+        if (File.Exists(Application.dataPath + "\\GameFiles\\SavedGameModel.json"))
         {
-            File.Delete("D:\\StockSimulator\\SavedGameStage.json");
-        }
-        if (File.Exists("D:\\StockSimulator\\SavedGameNewspaper.json"))
-        {
-            File.Delete("D:\\StockSimulator\\SavedGameNewspaper.json");
-        }
-        if (File.Exists("D:\\StockSimulator\\SavedGamePlayer.json"))
-        {
-            File.Delete("D:\\StockSimulator\\SavedGamePlayer.json");
-        }
-        if (File.Exists("D:\\StockSimulator\\SavedGameCompany.json"))
-        {
-            File.Delete("D:\\StockSimulator\\SavedGameCompany.json");
+            File.Delete(Application.dataPath + "\\GameFiles\\SavedGameModel.json");
         }
     }
 }

@@ -1,12 +1,13 @@
 using Assets.Scripts;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FillPortfolio : MonoBehaviour
 {
     [SerializeField] InfoPreview companyObject;
     [SerializeField] RectTransform content;
-    [SerializeField] TMPro.TMP_Text currentMoney;
+    [SerializeField] TMP_Text currentMoney;
     private void Awake()
     {
         OnReceiveUpdate(GameplayManager.gameplayModel.Player.Companies);

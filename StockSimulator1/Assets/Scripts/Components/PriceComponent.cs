@@ -1,5 +1,8 @@
-﻿namespace Assets.Scripts
+﻿using System;
+
+namespace Assets.Scripts
 {
+    [Serializable]
     public class PriceComponent
     {
         public int StartPrice { get; private set; } = default;

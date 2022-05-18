@@ -9,13 +9,13 @@ public class UiSceneSwitch : MonoBehaviour
     [SerializeField] string sceneName;
     void Awake()
     {
+        newGameButton.onClick.AddListener(GenerateConfig);
         newGameButton.onClick.AddListener(ChangeSceneNewGame);
         savedGameButton.onClick.AddListener(ChangeSceneSavedGame);
     }
     private void OnDestroy()
     {
-        newGameButton.onClick.RemoveListener(ChangeSceneNewGame);
-        savedGameButton.onClick.RemoveListener(ChangeSceneSavedGame);
+        newGameButton.onClick.RemoveAllListeners();
     }
     void ChangeSceneNewGame()
     {
@@ -25,5 +25,12 @@ public class UiSceneSwitch : MonoBehaviour
     void ChangeSceneSavedGame()
     {
         SceneManager.LoadScene(sceneName);
+    }
+    public void GenerateConfig()
+    {
+        ConfigGenerator configGenerator = new ConfigGenerator();
+        configGenerator.GenerateCompanies();
+        configGenerator.GenerateOcassions();
+        configGenerator.GenerateHeadlines();
     }
 }
