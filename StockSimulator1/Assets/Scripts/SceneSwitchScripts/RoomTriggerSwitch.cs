@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RoomTriggerSwitch : MonoBehaviour
+namespace Assets.Scripts.SceneSwitchScripts
 {
-    [SerializeField] string sceneName;
-    private void OnMouseDown()
+    public class RoomTriggerSwitch : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneName);
+        [SerializeField] string sceneName;
+        
+        private void OnMouseDown()
+        {
+            var audio = GetComponent<AudioSource>();
+            audio.Play();
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }

@@ -1,17 +1,20 @@
-using Assets.Scripts;
-using Assets.Scripts.News;
+using Assets.Scripts.GameplayComponents;
+using Assets.Scripts.GameplayComponents.NewsComponents;
 using System.Collections.Generic;
 
-public class NewsGenerator
+namespace Assets.Scripts.Generators
 {
-    public Newspaper GetNews(int value, Dictionary<int, Company> companies, List<Headline> headlines)
+    public class NewsGenerator
     {
-        List<Subject> subjects = new List<Subject>();
-        SubjectGenerator subjectGenerator = new SubjectGenerator();
-        for (int i = 0; i < value; i++)
+        public Newspaper GetNews(int value, Dictionary<int, Company> companies, List<Headline> headlines)
         {
-            subjects.Add(subjectGenerator.GetSubject(companies, headlines));
+            List<Subject> subjects = new List<Subject>();
+            SubjectGenerator subjectGenerator = new SubjectGenerator();
+            for (int i = 0; i < value; i++)
+            {
+                subjects.Add(subjectGenerator.GetSubject(companies, headlines));
+            }
+            return new Newspaper(subjects);
         }
-        return new Newspaper(subjects);
     }
 }

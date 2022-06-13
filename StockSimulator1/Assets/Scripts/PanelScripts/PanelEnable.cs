@@ -1,15 +1,21 @@
 using UnityEngine;
 using UnityEngine.UI;
-public class PanelEnable : MonoBehaviour
+
+namespace Assets.Scripts.PanelScripts
 {
-    [SerializeField] GameObject panel;
-    [SerializeField] Button button;
-    private void Awake()
+    public class PanelEnable : MonoBehaviour
     {
-        button.onClick.AddListener(() => panel.SetActive(true));
-    }
-    private void OnDestroy()
-    {
-        button.onClick.AddListener(() => panel.SetActive(true));
+        [SerializeField] GameObject panel;
+        [SerializeField] Button button;
+        private void Awake()
+        {
+            button.onClick.AddListener(() => panel.SetActive(true));
+            var audio = button.GetComponent<AudioSource>();
+            button.onClick.AddListener(() => audio.Play());
+        }
+        private void OnDestroy()
+        {
+            button.onClick.RemoveAllListeners();
+        }
     }
 }

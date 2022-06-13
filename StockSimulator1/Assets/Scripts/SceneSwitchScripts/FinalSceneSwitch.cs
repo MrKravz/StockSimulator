@@ -1,4 +1,6 @@
-﻿using TMPro;
+﻿using Assets.Scripts.GameplayComponents.Managers;
+using Assets.Scripts.InfoWorkers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,6 +9,8 @@ namespace Assets.Scripts.SceneSwitchScripts
 {
     public class FinalSceneSwitch : MonoBehaviour
     {
+        [SerializeField] AudioSource winMusic;
+        [SerializeField] AudioSource looseMusic;
         [SerializeField] TMP_Text text;
         [SerializeField] Button button;
         [SerializeField] string nameScene;
@@ -18,12 +22,14 @@ namespace Assets.Scripts.SceneSwitchScripts
             {
                 text.color = Color.green;
                 text.text = "Win";
+                winMusic.Play();
                 return;
             }
             else if (GameplayManager.currentE == EGameStage.Lose)
             {
                 text.color = Color.red;
                 text.text = "Lose";
+                looseMusic.Play();
             }
            
         }

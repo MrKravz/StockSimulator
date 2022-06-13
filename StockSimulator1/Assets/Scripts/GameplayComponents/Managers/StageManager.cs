@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Assets.Scripts.Generators;
+using Assets.Scripts.InfoWorkers;
+using System;
 
-namespace Assets.Scripts.Manager
+namespace Assets.Scripts.GameplayComponents.Managers
 {
     public enum EStage
     {
@@ -41,10 +43,9 @@ namespace Assets.Scripts.Manager
         {
             if (GameplayManager.gameplayModel.CurrentStage == EStage.PreFinal)
             {
-                if (UnityEngine.Random.Range(1, 10) % 2 == 0)
-                {
-
-                }
+                    LoadInfo loadInfo = new LoadInfo();
+                    FriendOcassionGenerator friendOcassionGenerator = new FriendOcassionGenerator();
+                    GameplayManager.gameplayModel.Ocassion = friendOcassionGenerator.GetOcassion(loadInfo.LoadOcassionInfo());
             }
         }
         public void FinalPhase()
@@ -52,6 +53,10 @@ namespace Assets.Scripts.Manager
             if (GameplayManager.gameplayModel.CurrentStage == EStage.Final)
             {
                 new MoneyManager().DailyExpenses(GameplayManager.gameplayModel.Player);
+                if (GameplayManager.gameplayModel.Ocassion != default)
+                {
+                    GameplayManager.gameplayModel.Player.MoneyComponent.Add(GameplayManager.gameplayModel.Ocassion.Amount);
+                }
                 SwitchStage();
             }
             GameplayManager.IsGameOver();

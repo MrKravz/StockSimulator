@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Scripts.News
+namespace Assets.Scripts.GameplayComponents.NewsComponents
 {
     [Serializable]
     public class Subject

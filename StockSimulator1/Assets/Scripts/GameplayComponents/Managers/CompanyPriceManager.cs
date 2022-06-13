@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Assets.Scripts.Manager
+namespace Assets.Scripts.GameplayComponents.Managers
 {
     public class CompanyPriceManager
     {

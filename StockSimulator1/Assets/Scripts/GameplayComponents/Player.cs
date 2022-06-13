@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Assets.Scripts.Components;
+using System;
 using System.Collections.Generic;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.GameplayComponents
 {
     [Serializable]
     public class Player

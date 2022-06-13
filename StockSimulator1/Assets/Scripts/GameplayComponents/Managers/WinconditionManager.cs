@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Assets.Scripts.GameplayComponents.Managers
+﻿namespace Assets.Scripts.GameplayComponents.Managers
 {
     public class WinconditionManager
     {
         public bool IsWin()
         {
-            return GameplayManager.gameplayModel.Player.MoneyComponent.CurrentMoney >= 100000;
+            return GameplayManager.gameplayModel.Player.MoneyComponent.CurrentMoney >= 1000000000;
         }
         public bool IsLose()
         {

@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.GameplayComponents.Previews
 {
     public class InfoPreview : MonoBehaviour
     {

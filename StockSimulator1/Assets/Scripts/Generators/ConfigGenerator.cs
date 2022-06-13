@@ -1,16 +1,16 @@
-using Assets.Scripts;
+using Assets.Scripts.Components;
 using Assets.Scripts.GameplayComponents;
-using System.Collections;
+using Assets.Scripts.GameplayComponents.NewsComponents;
+using Assets.Scripts.InfoWorkers;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using UnityEngine;
 
-public class ConfigGenerator
+namespace Assers.Scripts.Generators
 {
-    public void GenerateCompanies()
+    public class ConfigGenerator
     {
-        Dictionary<int, Company> companies = new Dictionary<int, Company>()
+        public void GenerateCompanies()
+        {
+            Dictionary<int, Company> companies = new Dictionary<int, Company>()
         {
             {1, new Company("Microsoft",ETypeOfCompany.IT,new PriceComponent(400,400))},
             {2, new Company("Apple",ETypeOfCompany.IT,new PriceComponent(400,400))},
@@ -39,11 +39,11 @@ public class ConfigGenerator
             {25, new Company("Sony",ETypeOfCompany.Movies,new PriceComponent(400,400))},
             {26, new Company("Nestle",ETypeOfCompany.Food,new PriceComponent(400,400))},
         };
-        new SaveInfo().GenerateCompaniesInfo(companies);
-    }
-    public void GenerateHeadlines()
-    {
-        List<Headline> headlines = new List<Headline>()
+            new SaveInfo().GenerateCompaniesInfo(companies);
+        }
+        public void GenerateHeadlines()
+        {
+            List<Headline> headlines = new List<Headline>()
         {
             new Headline("*** обвинили в расизме в связи с их последней коммерческой рекламой ",-7),
             new Headline("*** проводят благотворительный вечер. Все заработанные деньги пойдут на поддержку детских домов.",7),
@@ -60,11 +60,11 @@ public class ConfigGenerator
             new Headline("*** несет убытки в связи с вспышкой вируса.",-25),
             new Headline("Реддиторы скупают акции компании ***.",30)
         };
-        new SaveInfo().GenerateHeadlineInfo(headlines);
-    }
-    public void GenerateOcassions()
-    {
-        List<FriendOcassion> ocassions = new List<FriendOcassion>()
+            new SaveInfo().GenerateHeadlineInfo(headlines);
+        }
+        public void GenerateOcassions()
+        {
+            List<FriendOcassion> ocassions = new List<FriendOcassion>()
         {
             new FriendOcassion("Директор","Добрый вечер, перечислил вам премию, вы ее заслужили.",500),
             new FriendOcassion("Серега","Даров, погнали в клуб сегодня",-200),
@@ -80,6 +80,7 @@ public class ConfigGenerator
             new FriendOcassion("Ромчик","Даров, не хочешь на тачке покататься?",-50),
             new FriendOcassion("Врач","Добрый вечер, пришли резултаты анализов, они удручают\n Вам бы не мешало подъехать в болницу.",-100),
         };
-        new SaveInfo().GenerateOcassionsInfo(ocassions);
-    } 
+            new SaveInfo().GenerateOcassionsInfo(ocassions);
+        }
+    }
 }

@@ -1,16 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-public class GameplaySceneSwitch : MonoBehaviour
+
+namespace Assets.Scripts.SceneSwitchScripts
 {
-    [SerializeField] Button button;
-    [SerializeField] string sceneName;
-    void Awake()
+    public class GameplaySceneSwitch : MonoBehaviour
     {
-        button.onClick.AddListener(() => SceneManager.LoadScene(sceneName));
-    }
-    private void OnDestroy()
-    {
-        button.onClick.RemoveListener(() => SceneManager.LoadScene(sceneName));
+        [SerializeField] Button button;
+        [SerializeField] string sceneName;
+        void Awake()
+        {
+            button.onClick.AddListener(() => SceneManager.LoadScene(sceneName));
+        }
+        private void OnDestroy()
+        {
+            button.onClick.RemoveListener(() => SceneManager.LoadScene(sceneName));
+        }
     }
 }

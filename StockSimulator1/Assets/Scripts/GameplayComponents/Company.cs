@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Assets.Scripts.Components;
+using System;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.GameplayComponents
 {
     public enum ETypeOfCompany
     {

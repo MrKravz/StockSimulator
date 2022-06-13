@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.Serializers
 {
     public class ConfigDeserialaizer<T>
     {

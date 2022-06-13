@@ -1,7 +1,6 @@
-﻿using Assets.Scripts.Manager;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts
+namespace Assets.Scripts.GameplayComponents.Managers
 {
    
     public class SwitchStageManager : MonoBehaviour
